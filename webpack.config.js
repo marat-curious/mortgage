@@ -22,6 +22,7 @@ module.exports = {
   },
   plugins: [
     new HtmlWebpackPlugin({
+      minify: true,
       title: 'Ипотечный калькулятор',
     }),
   ],
