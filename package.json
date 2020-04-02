@@ -1,0 +1,19 @@
+{
+  "name": "mortgage",
+  "version": "0.0.1",
+  "description": "Mortgage calculator",
+  "main": "index.js",
+  "scripts": {
+    "test": "echo \"Error: no test specified\" && exit 1"
+  },
+  "repository": {
+    "type": "git",
+    "url": "git+https://github.com/marat-curious/mortgage.git"
+  },
+  "author": "Marat",
+  "license": "MIT",
+  "bugs": {
+    "url": "https://github.com/marat-curious/mortgage/issues"
+  },
+  "homepage": "https://github.com/marat-curious/mortgage#readme"
+}
