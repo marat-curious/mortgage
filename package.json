@@ -15,5 +15,8 @@
   "bugs": {
     "url": "https://github.com/marat-curious/mortgage/issues"
   },
-  "homepage": "https://github.com/marat-curious/mortgage#readme"
+  "homepage": "https://github.com/marat-curious/mortgage#readme",
+  "devDependencies": {
+    "webpack": "^4.42.1"
+  }
 }
