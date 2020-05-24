@@ -13,7 +13,7 @@ type Options = {
   endDate: string,
 }
 
-function validateProperty(data: Options): void {
+function validateProperties(data: Options): void {
   [
     'amount',
     'interest',
@@ -27,8 +27,7 @@ function validateProperty(data: Options): void {
     });
 }
 
-function validatePropertyType(data: Options): void {
-  const regexDate = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/g;
+function validatePropertiesType(data: Options): void {
   [
     'amount',
     'term',
@@ -43,7 +42,10 @@ function validatePropertyType(data: Options): void {
     && Number.isNaN(parseFloat(data.interest))) {
     throw new PropertyTypeError('interest');
   }
+}
 
+function validatePropertiesFormat(data: Options): void {
+  const regexDate = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/g;
   [
     'startDate',
     'endDate',
@@ -57,7 +59,8 @@ function validatePropertyType(data: Options): void {
 
 export default (data: string) => {
   const parsed = JSON.parse(data);
-  validateProperty(parsed);
-  validatePropertyType(parsed);
+  validateProperties(parsed);
+  validatePropertiesType(parsed);
+  validatePropertiesFormat(parsed);
   return parsed;
 };
