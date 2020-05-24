@@ -33,60 +33,146 @@ describe('File Parsing Function', () => {
     }
   });
   describe('return error with description, if field:', () => {
-    test('"amount" is missing', () => {
-      expect.assertions(2);
-      const paramsWithoutAmount = params;
-      delete paramsWithoutAmount.amount;
-      try {
-        parseFile(JSON.stringify(paramsWithoutAmount));
-      } catch (error) {
-        expect(error).toBeInstanceOf(PropertyRequiredError);
-        expect(error.property).toEqual('amount');
-      }
+    let JSONString = '';
+    describe('amount', () => {
+      beforeEach(() => {
+        const paramsWithoutAmount = params;
+        delete paramsWithoutAmount.amount;
+        JSONString = JSON.stringify(paramsWithoutAmount);
+      });
+      afterEach(() => {
+        JSONString = '';
+      });
+      test('is missing', () => {
+        expect.assertions(2);
+        try {
+          parseFile(JSONString);
+        } catch (error) {
+          expect(error).toBeInstanceOf(PropertyRequiredError);
+          expect(error.property).toEqual('amount');
+        }
+      });
+      test('is another type', () => {
+        expect.assertions(2);
+        try {
+          parseFile(JSONString);
+        } catch (error) {
+          expect(error).toBeInstanceOf(TypeError);
+          expect(error.property).toEqual('amount');
+        }
+      });
     });
-    test('"interest" is missing', () => {
-      expect.assertions(2);
-      const paramsWithoutInterest = params;
-      delete paramsWithoutInterest.interest;
-      try {
-        parseFile(JSON.stringify(paramsWithoutInterest));
-      } catch (error) {
-        expect(error).toBeInstanceOf(PropertyRequiredError);
-        expect(error.property).toEqual('interest');
-      }
+    describe('interest', () => {
+      beforeEach(() => {
+        const paramsWithoutInterest = params;
+        delete paramsWithoutInterest.interest;
+        JSONString = JSON.stringify(paramsWithoutInterest);
+      });
+      afterEach(() => {
+        JSONString = '';
+      });
+      test('is missing', () => {
+        expect.assertions(2);
+        try {
+          parseFile(JSONString);
+        } catch (error) {
+          expect(error).toBeInstanceOf(PropertyRequiredError);
+          expect(error.property).toEqual('interest');
+        }
+      });
+      test('is another type', () => {
+        expect.assertions(2);
+        try {
+          parseFile(JSONString);
+        } catch (error) {
+          expect(error).toBeInstanceOf(TypeError);
+          expect(error.property).toEqual('interest');
+        }
+      });
     });
-    test('"term" is missing', () => {
-      expect.assertions(2);
-      const paramsWithoutTerm = params;
-      delete paramsWithoutTerm.term;
-      try {
-        parseFile(JSON.stringify(paramsWithoutTerm));
-      } catch (error) {
-        expect(error).toBeInstanceOf(PropertyRequiredError);
-        expect(error.property).toEqual('term');
-      }
+    describe('term', () => {
+      beforeEach(() => {
+        const paramsWithoutTerm = params;
+        delete paramsWithoutTerm.term;
+        JSONString = JSON.stringify(paramsWithoutTerm);
+      });
+      afterEach(() => {
+        JSONString = '';
+      });
+      test('is missing', () => {
+        expect.assertions(2);
+        try {
+          parseFile(JSONString);
+        } catch (error) {
+          expect(error).toBeInstanceOf(PropertyRequiredError);
+          expect(error.property).toEqual('term');
+        }
+      });
+      test('is another type', () => {
+        expect.assertions(2);
+        try {
+          parseFile(JSONString);
+        } catch (error) {
+          expect(error).toBeInstanceOf(TypeError);
+          expect(error.property).toEqual('term');
+        }
+      });
     });
-    test('"startDate" is missing', () => {
-      expect.assertions(2);
-      const paramsWithoutStartDate = params;
-      delete paramsWithoutStartDate.startDate;
-      try {
-        parseFile(JSON.stringify(paramsWithoutStartDate));
-      } catch (error) {
-        expect(error).toBeInstanceOf(PropertyRequiredError);
-        expect(error.property).toEqual('startDate');
-      }
+    describe('startDate', () => {
+      beforeEach(() => {
+        const paramsWithoutStartDate = params;
+        delete paramsWithoutStartDate.startDate;
+        JSONString = JSON.stringify(paramsWithoutStartDate);
+      });
+      afterEach(() => {
+        JSONString = '';
+      });
+      test('is missing', () => {
+        expect.assertions(2);
+        try {
+          parseFile(JSONString);
+        } catch (error) {
+          expect(error).toBeInstanceOf(PropertyRequiredError);
+          expect(error.property).toEqual('startDate');
+        }
+      });
+      test('is another type', () => {
+        expect.assertions(2);
+        try {
+          parseFile(JSONString);
+        } catch (error) {
+          expect(error).toBeInstanceOf(TypeError);
+          expect(error.property).toEqual('startDate');
+        }
+      });
     });
-    test('"endDate" is missing', () => {
-      expect.assertions(2);
-      const paramsWithoutEndDate = params;
-      delete paramsWithoutEndDate.endDate;
-      try {
-        parseFile(JSON.stringify(paramsWithoutEndDate));
-      } catch (error) {
-        expect(error).toBeInstanceOf(PropertyRequiredError);
-        expect(error.property).toEqual('endDate');
-      }
+    describe('endDate', () => {
+      beforeEach(() => {
+        const paramsWithoutEndDate = params;
+        delete paramsWithoutEndDate.endDate;
+        JSONString = JSON.stringify(paramsWithoutEndDate);
+      });
+      afterEach(() => {
+        JSONString = '';
+      });
+      test('is missing', () => {
+        expect.assertions(2);
+        try {
+          parseFile(JSONString);
+        } catch (error) {
+          expect(error).toBeInstanceOf(PropertyRequiredError);
+          expect(error.property).toEqual('endDate');
+        }
+      });
+      test('is another type', () => {
+        expect.assertions(2);
+        try {
+          parseFile(JSONString);
+        } catch (error) {
+          expect(error).toBeInstanceOf(TypeError);
+          expect(error.property).toEqual('endDate');
+        }
+      });
     });
   });
 });
