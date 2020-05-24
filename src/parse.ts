@@ -1,5 +1,1 @@
-export const parseFile = () => [];
-
-export default {
-  parseFile,
-};
+export default () => [];
