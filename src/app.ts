@@ -1,3 +1,5 @@
+import parseFile from './parse';
+
 type Parsed = {
   amount: number,
   interest: number,
@@ -14,7 +16,7 @@ function handleFileLoad(e: Event) {
   const { result } = e.target as FileReader;
 
   if (result) {
-    const resultParsed: Parsed = JSON.parse(result as string);
+    const resultParsed: Parsed = parseFile(result);
     console.log(resultParsed);
   }
 }

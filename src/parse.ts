@@ -1,1 +1,66 @@
-export default () => [];
+import {
+  PropertyRequiredError,
+  PropertyTypeError,
+  PropertyFormatError,
+} from './errors/validation';
+
+type Options = {
+  [option: string]: number | string,
+  amount: number,
+  interest: number,
+  term: number,
+  startDate: string,
+  endDate: string,
+}
+
+function validateProperties(data: Options): void {
+  [
+    'amount',
+    'interest',
+    'term',
+    'startDate',
+    'endDate',
+  ]
+    .filter((option) => typeof data[option] === 'undefined')
+    .forEach((option) => {
+      throw new PropertyRequiredError(option);
+    });
+}
+
+function validatePropertiesType(data: Options): void {
+  [
+    'amount',
+    'term',
+  ]
+    .forEach((option) => {
+      if (Number.isNaN(parseInt(data[option] as string, 10))) {
+        throw new PropertyTypeError(option);
+      }
+    });
+
+  if (typeof data.interest === 'string'
+    && Number.isNaN(parseFloat(data.interest))) {
+    throw new PropertyTypeError('interest');
+  }
+}
+
+function validatePropertiesFormat(data: Options): void {
+  const regexDate = /([12]\d{3}-(0[1-9]|1[0-2])-(0[1-9]|[12]\d|3[01]))/g;
+  [
+    'startDate',
+    'endDate',
+  ]
+    .forEach((option) => {
+      if (!data[option].toString().match(regexDate)) {
+        throw new PropertyFormatError(option);
+      }
+    });
+}
+
+export default (data: string) => {
+  const parsed = JSON.parse(data);
+  validateProperties(parsed);
+  validatePropertiesType(parsed);
+  validatePropertiesFormat(parsed);
+  return parsed;
+};

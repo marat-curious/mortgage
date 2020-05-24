@@ -1,15 +1,29 @@
 export class ValidationError extends Error {
-  constructor(message: string) {
+  property: string;
+  constructor(property: string, message: string) {
     super(message);
     this.name = 'ValidationError';
+    this.property = property;
   }
 }
 
 export class PropertyRequiredError extends ValidationError {
-  property: string;
   constructor(property: string) {
-    super(`Отсутствует свойство: ${property}`);
+    super(property, `Отсутствует свойство: ${property}`);
     this.name = 'PropertyRequiredError';
-    this.property = property;
+  }
+}
+
+export class PropertyTypeError extends ValidationError {
+  constructor(property: string) {
+    super(property, `Неверный тип свойства: ${property}`);
+    this.name = 'PropertyTypeError';
+  }
+}
+
+export class PropertyFormatError extends ValidationError {
+  constructor(property: string) {
+    super(property, `Неверный формат свойства: ${property}`);
+    this.name = 'PropertyFormatError';
   }
 }
