@@ -3,7 +3,7 @@ import parseFile from './parse';
 type Parsed = {
   amount: number,
   interest: number,
-  termMonths: number,
+  term: number,
   startDate: string,
   endDate: string,
   payments: [{
@@ -16,8 +16,15 @@ function handleFileLoad(e: Event) {
   const { result } = e.target as FileReader;
 
   if (result) {
-    const resultParsed: Parsed = parseFile(result);
-    console.log(resultParsed);
+    const data = typeof result === 'string'
+      ? result
+      : Buffer.from(result).toString();
+    try {
+      const resultParsed = parseFile(data);
+      console.log(resultParsed);
+    } catch (error) {
+      console.error(error);
+    }
   }
 }
 
