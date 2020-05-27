@@ -2,9 +2,13 @@
   "compilerOptions": {
     "allowJs": true,
     "allowSyntheticDefaultImports": true,
+    "baseUrl": ".",
     "esModuleInterop": true,
     "module": "commonjs",
     "moduleResolution": "node",
+    "paths": {
+      "@/*": ["src/*"],
+    },
     "sourceMap": true,
     "strict": true,
     "target": "es6"
