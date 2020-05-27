@@ -3,7 +3,7 @@ import {
   PropertyTypeError,
   PropertyFormatError,
 } from '@/errors/validation';
-import parseFile from '@/parse';
+import parseFile, { Params } from '@/parse';
 
 let params = {};
 
@@ -40,7 +40,7 @@ describe('File Parsing Function', () => {
     describe('amount', () => {
       test('is missing', () => {
         expect.assertions(2);
-        const paramsWithoutAmount = params;
+        const paramsWithoutAmount: Params = params;
         delete paramsWithoutAmount.amount;
         try {
           parseFile(JSON.stringify(paramsWithoutAmount));
@@ -66,7 +66,7 @@ describe('File Parsing Function', () => {
     describe('interest', () => {
       test('is missing', () => {
         expect.assertions(2);
-        const paramsWithoutInterest = params;
+        const paramsWithoutInterest: Params = params;
         delete paramsWithoutInterest.interest;
         try {
           parseFile(JSON.stringify(paramsWithoutInterest));
@@ -92,7 +92,7 @@ describe('File Parsing Function', () => {
     describe('term', () => {
       test('is missing', () => {
         expect.assertions(2);
-        const paramsWithoutTerm = params;
+        const paramsWithoutTerm: Params = params;
         delete paramsWithoutTerm.term;
         try {
           parseFile(JSON.stringify(paramsWithoutTerm));
@@ -118,7 +118,7 @@ describe('File Parsing Function', () => {
     describe('startDate', () => {
       test('is missing', () => {
         expect.assertions(2);
-        const paramsWithoutStartDate = params;
+        const paramsWithoutStartDate: Params = params;
         delete paramsWithoutStartDate.startDate;
         try {
           parseFile(JSON.stringify(paramsWithoutStartDate));
@@ -144,7 +144,7 @@ describe('File Parsing Function', () => {
     describe('endDate', () => {
       test('is missing', () => {
         expect.assertions(2);
-        const paramsWithoutEndDate = params;
+        const paramsWithoutEndDate: Params = params;
         delete paramsWithoutEndDate.endDate;
         try {
           parseFile(JSON.stringify(paramsWithoutEndDate));
