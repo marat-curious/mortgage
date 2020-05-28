@@ -1,16 +1,5 @@
 import parseFile from './parse';
-
-type Parsed = {
-  amount: number,
-  interest: number,
-  term: number,
-  startDate: string,
-  endDate: string,
-  payments: [{
-    date: string,
-    payment: number;
-  }],
-}
+import Form from './components/form'
 
 function handleFileLoad(e: Event) {
   const { result } = e.target as FileReader;
@@ -44,9 +33,12 @@ function handleFileSelect(e: Event) {
 const app = document.createElement('div') as HTMLDivElement;
 const input = document.createElement('input') as HTMLInputElement;
 
+const form = new Form().render();
+
 input.setAttribute('type', 'file');
 input.addEventListener('change', handleFileSelect, false);
 
+app.appendChild(form);
 app.appendChild(input);
 
 document.body.appendChild(app);
