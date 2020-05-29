@@ -8,7 +8,6 @@ interface Attributes {
 
 interface InputAttributes extends Attributes {
   name: string,
-  type: string,
   value: string,
 };
 
@@ -28,41 +27,37 @@ export default class Form {
   }
 
   input (attributes: InputAttributes): HTMLInputElement {
-    const input = document.createElement('input');
+    const input = document.createElement('input') as HTMLInputElement;
+    input.setAttribute('type', 'text');
     Object.keys(attributes)
       .forEach((key) => input.setAttribute(key, attributes[key] || ''));
     return input;
   }
 
   render () {
-    const form = document.createElement('form');
+    const form = document.createElement('form') as HTMLFormElement;
 
     const inputAmount = this.input({
-      type: 'text',
       id: 'amount',
       name: 'amount',
       value: this.#amount.toString(),
     });
     const inputInterest = this.input({
-      type: 'text',
       id: 'interest',
       name: 'interest',
       value: this.#interest.toString(),
     });
     const inputTerm = this.input({
-      type: 'text',
       id: 'term',
       name: 'term',
       value: this.#term.toString(),
     });
     const inputStartDate = this.input({
-      type: 'text',
       id: 'startDate',
       name: 'startDate',
       value: this.#startDate,
     });
     const inputEndDate = this.input({
-      type: 'text',
       id: 'endDate',
       name: 'endDate',
       value: this.#endDate,
