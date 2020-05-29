@@ -4,15 +4,17 @@ import { Params } from './parse';
 
 const app = document.createElement('div') as HTMLDivElement;
 
-function logData (data?: Params) {
-  console.log(data);
-}
+function fillForm(form: Form) {
+  return (data?: Params) => {
+    form.fill(data);
+  };
+};
 
-const form = new Form().render();
+const form = new Form();
 const input = new Upload();
-input.onChange = logData;
+input.onChange = fillForm(form);
 
 app.appendChild(input.render());
-app.appendChild(form);
+app.appendChild(form.render());
 
 document.body.appendChild(app);

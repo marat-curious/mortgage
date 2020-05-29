@@ -4,31 +4,55 @@ interface Attributes {
   [key: string]: string | undefined,
   id?: string,
   class?: string,
+  value?: string,
 };
 
 interface InputAttributes extends Attributes {
   name: string,
-  value: string,
 };
 
 export default class Form {
-  #amount: number;
-  #interest: number;
-  #term: number;
-  #startDate: string;
-  #endDate: string;
+  public amount: HTMLInputElement;
+  public interest: HTMLInputElement;
+  public term: HTMLInputElement;
+  public startDate: HTMLInputElement;
+  public endDate: HTMLInputElement;
 
-  constructor(params?: Params) {
-    this.#amount = params?.amount || 0;
-    this.#interest = params?.interest || 0;
-    this.#term = params?.term || 0;
-    this.#startDate = params?.startDate || '';
-    this.#endDate = params?.endDate || '';
+  constructor() {
+    this.amount = this.input({
+      id: 'amount',
+      name: 'amount',
+    });
+    this.interest = this.input({
+      id: 'interest',
+      name: 'interest',
+    });
+    this.term = this.input({
+      id: 'term',
+      name: 'term',
+    });
+    this.startDate = this.input({
+      id: 'startDate',
+      name: 'startDate',
+    });
+    this.endDate = this.input({
+      id: 'endDate',
+      name: 'endDate',
+    });
+  }
+
+  fill (params?: Params) {
+    this.amount.value = params?.amount ? String(params.amount) : '';
+    this.interest.value = params?.interest ? String(params.interest) : '';
+    this.term.value = params?.term ? String(params.term) : '';
+    this.startDate.value = params?.startDate ? String(params.startDate) : '';
+    this.endDate.value = params?.endDate ? String(params.endDate) : '';
   }
 
   input (attributes: InputAttributes): HTMLInputElement {
     const input = document.createElement('input') as HTMLInputElement;
     input.setAttribute('type', 'text');
+    input.setAttribute('value', '');
     Object.keys(attributes)
       .forEach((key) => input.setAttribute(key, attributes[key] || ''));
     return input;
@@ -36,39 +60,11 @@ export default class Form {
 
   render () {
     const form = document.createElement('form') as HTMLFormElement;
-
-    const inputAmount = this.input({
-      id: 'amount',
-      name: 'amount',
-      value: this.#amount.toString(),
-    });
-    const inputInterest = this.input({
-      id: 'interest',
-      name: 'interest',
-      value: this.#interest.toString(),
-    });
-    const inputTerm = this.input({
-      id: 'term',
-      name: 'term',
-      value: this.#term.toString(),
-    });
-    const inputStartDate = this.input({
-      id: 'startDate',
-      name: 'startDate',
-      value: this.#startDate,
-    });
-    const inputEndDate = this.input({
-      id: 'endDate',
-      name: 'endDate',
-      value: this.#endDate,
-    });
-
-    form.appendChild(inputAmount);
-    form.appendChild(inputInterest);
-    form.appendChild(inputTerm);
-    form.appendChild(inputStartDate);
-    form.appendChild(inputEndDate);
-
+    form.appendChild(this.amount);
+    form.appendChild(this.interest);
+    form.appendChild(this.term);
+    form.appendChild(this.startDate);
+    form.appendChild(this.endDate);
     return form;
   }
 };
