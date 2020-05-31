@@ -9,6 +9,7 @@ class Input {
 
 export default class FileInput extends Input {
   public onChange: (data?: Params) => void = () => {};
+  public onError: (error: Error) => void = () => {};
   constructor() {
     super('file');
     this.handleSelectFile = this.handleSelectFile.bind(this);
@@ -28,6 +29,7 @@ export default class FileInput extends Input {
       this.onChange(resultParsed);
     } catch (error) {
       console.error(error);
+      this.onError(error);
     }
   }
   handleSelectFile(e: Event) {

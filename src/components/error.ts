@@ -1,13 +1,15 @@
-import { ValidationError } from '@/errors/validation';
-
 export default class ErrorMessage {
-  public onError: (error: ValidationError) => void = () => {};
+  error: HTMLDivElement;
   constructor () {
-    this.onError = this.onError.bind(this);
+    this.error = document.createElement('div');
+    this.show = this.show.bind(this);
+  }
+  show (error: Error) {
+    this.error.innerText = error.message;
   }
   render () {
-    const error = document.createElement('div');
-    error.classList.add('error');
-    return error;
+    this.error.setAttribute('id', 'error');
+    this.error.classList.add('error');
+    return this.error;
   }
 };
