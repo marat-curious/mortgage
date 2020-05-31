@@ -1,3 +1,4 @@
+import Error from './components/error';
 import Form from './components/form';
 import Upload from './components/upload';
 import { Params } from './parse';
@@ -10,10 +11,12 @@ function fillForm(form: Form) {
   };
 };
 
+const error = new Error();
 const form = new Form();
 const input = new Upload();
 input.onChange = fillForm(form);
 
+app.appendChild(error.render());
 app.appendChild(input.render());
 app.appendChild(form.render());
 
